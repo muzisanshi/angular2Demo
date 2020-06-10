@@ -1,3 +1,6 @@
+
+/// <reference path = "inters2.ts" />
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,9 +8,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'angularDemo';
 	ngOnInit(){
+
     console.log('--------angular2--------')
     let arr : number[] = [1,2,3];
     console.log(arr.join())
@@ -118,6 +123,68 @@ export class AppComponent {
     ]
 
     // function ff(){}
-    
+    interface Father {
+      getName(): void
+    }
+    interface Father2{
+      getAge(): void
+    }
+    class Father3{
+      getClass(): void{
+        console.log('getClass')
+      }
+    }
+    class Father4{
+      getId(): void{
+        console.log('getId')
+      }
+    }
+    class Son extends Father3{
+      getName(): void{
+        console.log('getName')
+      }
+    }
+
+    new Son().getClass()
+
+
+    class MyArr<T>{
+      data: T[] = [];
+      getItem(index: number){
+        return this.data[index]
+      }
+      addItem(o: T){
+        this.data.push(o)
+      }
+    }
+
+    let myArr: MyArr<Son> = new MyArr<Son>();
+    myArr.addItem(new Son())
+    myArr.getItem(0).getName()
+
+    // class Inter1Class extends Inters2.Inter2Class{
+
+    // }
+    // new Inter1Class().func1()
+
+    function dec(): void{
+      console.log('dec')
+    }
+    let decVar: number = 0;
+
+    // abstract class AbsClass{
+    //   absFunc(): void
+    //   func(): void{
+    //     console.log('func')
+    //   }
+    // }
+
+    // class RealClass extends AbsClass{
+    //   absFunc(): void{
+    //     console.log('absFunc')
+    //   }
+    // }
+
+    // new RealClass().absFunc();
 	}
 }
