@@ -8,12 +8,12 @@ import {Router} from '@angular/router'
 })
 
 export default class AComp{
-  router: Router;
+  router: Router
   constructor(router: Router){
-    this.router = router;
+    this.router = router
   }
   ngOnInit(): void{
-    console.log('AComp')
+    console.log('AComp ? instanceof Component: ')
   }
   toA(event: any): void{
     this.router.navigate(['b'])

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component'
 import {RouterModule} from '@angular/router'
 import routes from '../router/app.router'
 
+import Bus from './Bus'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +23,7 @@ import routes from '../router/app.router'
       }
 		)
   ],
-  providers: [],
+  providers: [Bus],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
