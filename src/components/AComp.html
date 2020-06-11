@@ -1,7 +1,8 @@
-<div class="acomp" (click)="toA($event)">
+<!-- <div class="acomp" (click)="toA($event)"> -->
+  <div class="acomp">
   {{text}}
   {{state.name}}
 
   <b-comp></b-comp>
-
+  <input type="text" value="{{text}}" [(ngModel)]="text" placeholder="请输入"/>
 </div>

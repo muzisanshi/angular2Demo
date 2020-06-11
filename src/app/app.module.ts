@@ -5,6 +5,7 @@ import Api from '../api/index'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { FormsModule } from '@angular/forms'
 
 import {RouterModule} from '@angular/router'
 import routes from '../router/app.router'
@@ -19,6 +20,7 @@ import AComp from '../components/AComp'
     AComp
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

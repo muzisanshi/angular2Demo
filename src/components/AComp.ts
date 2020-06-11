@@ -11,16 +11,15 @@ import { HttpClient } from '@angular/common/http'
 })
 
 export default class AComp extends BaseComp{
-  router: Router
+
   state: any
-  store: AppStore
-  http: HttpClient
   text: string = 'AComp'
-  constructor(router: Router,store: AppStore,http: HttpClient){
+  constructor(
+    public router: Router,
+    public store: AppStore,
+    public http: HttpClient){
+
     super();
-    this.router = router
-    this.http = http
-    this.store = store
     this.state = store.getState()
     console.log('AComp----constructor')
   }
@@ -37,16 +36,20 @@ export default class AComp extends BaseComp{
 
     this.$off('change',cb2)
 
-    setTimeout(() => {
-      this.store.dispatch('change',{
-        name:'name',
-        data:'你大爷'
-      })
-    },5000)
+    // setTimeout(() => {
+    //   this.store.dispatch('change',{
+    //     name:'name',
+    //     data:'你大爷'
+    //   })
+    // },5000)
 
   }
   toA(event: any): void{
     this.router.navigate(['b'])
+  }
+
+  ngOnChanges(): void{
+    console.log('change')
   }
 
   ngOnDestroy(): void{
