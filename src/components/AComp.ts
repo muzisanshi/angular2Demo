@@ -1,6 +1,8 @@
 import {Component} from '@angular/core'
 import {Router} from '@angular/router'
-import Bus from '../app/Bus'
+import BaseComp from '../app/BaseComp'
+import AppStore from '../store/app.store'
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector:'a-comp',
@@ -8,27 +10,47 @@ import Bus from '../app/Bus'
   styleUrls:['./AComp.scss']
 })
 
-export default class AComp{
+export default class AComp extends BaseComp{
   router: Router
-  bus: Bus
-  constructor(router: Router,bus: Bus){
+  state: any
+  store: AppStore
+  http: HttpClient
+  text: string = 'AComp'
+  constructor(router: Router,store: AppStore,http: HttpClient){
+    super();
     this.router = router
-    this.bus = bus
+    this.http = http
+    this.store = store
+    this.state = store.getState()
+    console.log('AComp----constructor')
   }
   ngOnInit(): void{
-    console.log(this.bus)
+    console.log('AComp----ngOnInit')
     function cb1(d: any): void{
-      console.log('cb1')
+      console.log(d)
     }
     function cb2(d: any): void{
-      console.log('cb2')
+      console.log(d)
     }
-    this.bus.on('change',cb1)
-    this.bus.on('change',cb2)
+    this.$on('change',cb1)
+    this.$on('change',cb2)
 
-    this.bus.off('change',cb1)
+    this.$off('change',cb2)
+
+    setTimeout(() => {
+      this.store.dispatch('change',{
+        name:'name',
+        data:'你大爷'
+      })
+    },5000)
+
   }
   toA(event: any): void{
     this.router.navigate(['b'])
+  }
+
+  ngOnDestroy(): void{
+    console.log('ngOnDestroy')
+    this.$off('change')
   }
 }

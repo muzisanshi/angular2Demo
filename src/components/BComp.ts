@@ -1,5 +1,6 @@
 import {Component} from '@angular/core'
-import Bus from '../app/Bus'
+import BaseComp from '../app/BaseComp'
+import AppStore from '../store/app.store'
 
 @Component({
   selector:'b-comp',
@@ -7,15 +8,16 @@ import Bus from '../app/Bus'
   styleUrls:['./BComp.scss']
 })
 
-export default class BComp{
-  bus: Bus
-  constructor(bus: Bus){
-    this.bus = bus
+export default class BComp extends BaseComp{
+  state: any
+  constructor(store: AppStore){
+    super()
+    this.state = store.getState()
   }
   ngOnInit(){
     console.log('BComp')
     setTimeout(() => {
-      this.bus.emit('change','hello,body')
-    },5000)
+      this.$emit('change','hello,body')
+    },10000)
   }
 }
