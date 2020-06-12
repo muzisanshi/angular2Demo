@@ -1,8 +1,9 @@
-import {Component} from '@angular/core'
+import {Component,ViewChild} from '@angular/core'
 import {Router} from '@angular/router'
 import BaseComp from '../app/BaseComp'
 import AppStore from '../store/app.store'
-import { HttpClient } from '@angular/common/http'
+// import { HttpClient } from '@angular/common/http'
+import BComp from './BComp'
 
 @Component({
   selector:'a-comp',
@@ -12,12 +13,14 @@ import { HttpClient } from '@angular/common/http'
 
 export default class AComp extends BaseComp{
 
+  @ViewChild(BComp) bcomps: BComp
+
   state: any
   text: string = 'AComp'
+  testValue: string = 'testValue'
   constructor(
     public router: Router,
-    public store: AppStore,
-    public http: HttpClient){
+    public store: AppStore){
 
     super();
     this.state = store.getState()
@@ -36,19 +39,30 @@ export default class AComp extends BaseComp{
 
     this.$off('change',cb2)
 
-    // setTimeout(() => {
-    //   this.store.dispatch('change',{
-    //     name:'name',
-    //     data:'你大爷'
-    //   })
-    // },5000)
+    setTimeout(() => {
+      // this.store.dispatch('change',{
+      //   name:'name',
+      //   data:'你大爷'
+      // })
+      this.testValue = 'testValue2'
+      console.log(this.bcomps.shit)
+    },5000)
 
   }
+
+  ngAfterViewInit(){
+    console.log('ngAfterViewInit')
+    console.log(document.getElementById('testEle').style)
+  }
+
   toA(event: any): void{
     this.router.navigate(['b'])
   }
+  getValue(event: any): void{
+    console.log('getValue--------',event)
+  }
 
-  ngOnChanges(): void{
+  ngOnChanges(changes: any): void{
     console.log('change')
   }
 

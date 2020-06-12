@@ -3,6 +3,8 @@
   {{text}}
   {{state.name}}
 
-  <b-comp></b-comp>
+  <b-comp [testValue]="testValue" (outValue)="getValue($event)" #bcompRef></b-comp>
+  <!-- <b-comp [testValue]="testValue" (outValue)="getValue($event)" #bcompRef></b-comp> -->
   <input type="text" value="{{text}}" [(ngModel)]="text" placeholder="请输入"/>
+  <label id="testEle" style="color:red">label</label>
 </div>

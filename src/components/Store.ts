@@ -10,18 +10,18 @@ interface StoreInter{
 
 export default class Store implements StoreInter{
 
-  private state: any = {}
+  private static state: any = {}
   actions: any = {}
   mutations: any = {}
 
   constructor(state = {},actions = {},mutations = {}){
-    this.state = state
+    Store.state = state
     this.actions = actions
     this.mutations = mutations
   }
 
   getState(): any{
-    return this.state
+    return Store.state
   }
 
   dispatch(actionName: string,payload?: any){
@@ -30,10 +30,11 @@ export default class Store implements StoreInter{
         this.actions[key](this,payload)
     }
   }
+  
   commit(mutationName: string,payload?: any){
     for(let key in this.mutations){
       if(mutationName === key)
-        this.mutations[key](this.state,payload)
+        this.mutations[key](Store.state,payload)
     }
   }
 

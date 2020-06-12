@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {Component,Input,Output,EventEmitter} from '@angular/core'
 import BaseComp from '../app/BaseComp'
 import AppStore from '../store/app.store'
 
@@ -9,7 +9,11 @@ import AppStore from '../store/app.store'
 })
 
 export default class BComp extends BaseComp{
+  @Input() testValue: any = ''
+  @Output() outValue = new EventEmitter()
+
   state: any
+  shit: string = 'shit'
   constructor(store: AppStore){
     super()
     this.state = store.getState()
@@ -18,6 +22,18 @@ export default class BComp extends BaseComp{
     console.log('BComp')
     setTimeout(() => {
       this.$emit('change','hello,body')
+      this.outValue.emit({
+        name:'lilei',
+        age:31
+      })
     },10000)
+  }
+
+  ngOnChanges(changes: any){
+    console.log(changes)
+  }
+
+  getFuck(): string{
+    return 'fuck'
   }
 }
