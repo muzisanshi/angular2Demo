@@ -14,10 +14,13 @@ import BComp from './BComp'
 export default class AComp extends BaseComp{
 
   @ViewChild(BComp) bcomps: BComp
+  @ViewChild('bcompRef') bcomp: BComp
 
   state: any
   text: string = 'AComp'
   testValue: string = 'testValue'
+  sex: string = 'male'
+
   constructor(
     public router: Router,
     public store: AppStore){

@@ -18,9 +18,7 @@ export default class Bus{
     if(!event) return
     if(Bus.eventMap[event]){
       Bus.eventMap[event].map(it => {
-        it && typeof it === 'function' ? (
-          it(data)
-        ) : ''
+        it && (typeof it === 'function') && it(data)
       })
     }
   }
@@ -33,7 +31,7 @@ export default class Bus{
         return
       }
       Bus.eventMap[event].map((it,id) => {
-        it === cb ? Bus.eventMap[event].splice(id,1) : ''
+        it === cb && Bus.eventMap[event].splice(id,1)
       })
     }
   }

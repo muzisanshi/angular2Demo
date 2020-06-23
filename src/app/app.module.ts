@@ -13,11 +13,16 @@ import AppStore from '../store/app.store'
 import BComp from '../components/BComp'
 import AComp from '../components/AComp'
 
+import GenderPipe from '../util/GenderPipe'
+import BackgroundDirective from '../util/BackgroundDirective'
+
 @NgModule({
   declarations: [
     AppComponent,
     BComp,
-    AComp
+    AComp,
+    GenderPipe,
+    BackgroundDirective,
   ],
   imports: [
     FormsModule,

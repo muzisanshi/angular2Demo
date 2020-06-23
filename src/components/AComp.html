@@ -1,10 +1,14 @@
 <!-- <div class="acomp" (click)="toA($event)"> -->
-  <div class="acomp">
+<div class="acomp">
   {{text}}
   {{state.name}}
-
+  {{sex | gender}}
   <b-comp [testValue]="testValue" (outValue)="getValue($event)" #bcompRef></b-comp>
   <!-- <b-comp [testValue]="testValue" (outValue)="getValue($event)" #bcompRef></b-comp> -->
   <input type="text" value="{{text}}" [(ngModel)]="text" placeholder="请输入"/>
-  <label id="testEle" style="color:red">label</label>
+  <label id="testEle" style="color:red" *ngIf="sex === 'male';else elseEle">label</label>
+  <ng-template #elseEle>
+    <label id="testEle2" style="color:blue">label2</label>
+  </ng-template>
+  <div class="directive" [redBackground]="'red'"></div>
 </div>
